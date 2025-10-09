@@ -1,45 +1,40 @@
----
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-# image will be published to ghcr.io/<user>/<name>
-name: template
-# description will be included in the image's metadata
-description: This is my personal OS image.
+name: ChaosOS
+description: A custom image for ultimate chaos (so much so that i am not going to even bother signing it), running a mutable desktop on a Fedora Rawhide base.
 
-# the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/silverblue-main
-image-version: 42 # latest is also supported if you want new updates ASAP
+base-image: ghcr.io/ublue-os/base-main
+image-version: rawhide
 
-# module configuration, executed in order
-# you can include multiple instances of the same module
 modules:
-  - type: files
-    files:
-      - source: system
-        destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
-
   - type: dnf
-    repos:
-      copr:
-        - atim/starship
     install:
       packages:
+        - xorg-x11-server-Xwayland
+        - plymouth
+        - plymouth-theme-spinner
+        - systemd-udev
+        - sddm
+        - network-manager-applet
         - micro
         - starship
+        - lightdm
+        - lightdm-gtk-greeter
+      group-packages:
+        # Pick one desktop to install at a time for maximum chaos.
+        #- xfce-desktop-environment
+         - lxde-desktop
     remove:
       packages:
-        # example: removing firefox (in favor of the flatpak)
-        # "firefox" is the main package, "firefox-langpacks" is a dependency
         - firefox
-        - firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
+        - firefox-langpacks
+        # Ensure only one desktop environment is layered at once
+        #- lxde-desktop
+        #- xfce-desktop-environment
 
   - type: default-flatpaks
     configurations:
-      - notify: true # Send notification after install/uninstall is finished (true/false)
-        scope: system
-        # If no repo information is specified, Flathub will be used by default
-        install: # system flatpaks we want all users to have and not remove
+      - scope: system
+        install:
           - org.mozilla.firefox
           - org.gnome.Loupe
-      - scope: user # Also add Flathub user repo, but no user packages
-
-  - type: signing # this sets up the proper policy & signing files for signed images to work fully
+      - scope: user
