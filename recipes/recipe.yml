@@ -19,10 +19,34 @@ modules:
         - starship
         - lightdm
         - lightdm-gtk-greeter
-      group-packages:
-        # Pick one desktop to install at a time for maximum chaos.
-        #- xfce-desktop-environment
-         - lxde-desktop
+        - pcmanfm
+        - lxpanel
+        - lxsession
+        - openbox
+        - lxde-common
+        - lxappearance
+        - lxterminal
+        - lxtask
+        - lxrandr
+        - lxpolkit
+        - lxinput
+        - leafpad
+        - gpicview
+        - xarchiver
+        - lxdm
+        - lxsession-edit
+        - lxshortcut
+         # XFCE Core packages
+        # xfce4-panel
+        # xfce4-settings
+        # xfce4-session
+        # xfwm4
+        # thunar
+        # tumbler
+        # ristretto
+        # xfce4-terminal
+        # mousepad
+        # xarchiver
     remove:
       packages:
         - firefox
@@ -35,6 +59,10 @@ modules:
     configurations:
       - scope: system
         install:
-          - org.mozilla.firefox
+          #- io.gitlab.librewolf-community
+          - io.github.ungoogled_software.ungoogled_chromium
+          - org.libreoffice.LibreOffice
+          #- com.github.marhkb.Pods
           - org.gnome.Loupe
+          - com.vscodium.codium-insiders
       - scope: user
