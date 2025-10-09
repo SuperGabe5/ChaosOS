@@ -13,7 +13,7 @@ modules:
         - plymouth
         - plymouth-theme-spinner
         - systemd-udev
-        - sddm
+        #- sddm
         - network-manager-applet
         - micro
         - starship
