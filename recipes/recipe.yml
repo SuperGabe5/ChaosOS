@@ -16,7 +16,7 @@ modules:
         #- sddm
         - network-manager-applet
         - micro
-        - starship
+        #- starship
         - lightdm
         - lightdm-gtk-greeter
         - pcmanfm
