@@ -27,5 +27,5 @@ Coming Soon
 ## Verification
 > [!WARNING]
 > These images NOT signed
-> (update 1 day later after the original warning massage)
+> [update 1 day later after the original warning massage]
 > these images are now signed
