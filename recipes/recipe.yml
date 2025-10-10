@@ -1,9 +1,9 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: ChaosOS
-description: A custom image for ultimate chaos (so much so that i am not going to even bother signing it), running a mutable desktop on a Fedora Rawhide base.
+description: A custom image for ultimate Chaos
 
 base-image: ghcr.io/ublue-os/base-main
-image-version: rawhide
+image-version: 41
 
 modules:
   - type: dnf
