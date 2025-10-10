@@ -7,7 +7,7 @@ After setup, it is recommended you update this README to describe your custom im
 ## Installation
 > [INFO]
 > 
-> THIS IMAGE IS BASED ON RAWHIDE DO NOT USE FOR PRODUCTION
+> These images are not for a main production machine 
 
 To rebase an existing atomic Fedora installation to the latest build:
 
