@@ -9,34 +9,42 @@ modules:
   - type: dnf
     install:
       packages:
+        # Install the full LXDE desktop environment group
+        - "@lxde-desktop-environment"
+        
+        # Uncomment the line below and comment the lxde line above if you want to switch to XFCE:
+        #- "@xfce-desktop-environment"
+        
+        # Keep these necessary non-DE specific packages:
         - xorg-x11-server-Xwayland
         - plymouth
         - plymouth-theme-spinner
         - systemd-udev
-        #- sddm
         - network-manager-applet
         - micro
-        #- starship
         - lightdm
         - lightdm-gtk-greeter
-        - pcmanfm
-        - lxpanel
-        - lxsession
-        - openbox
-        - lxde-common
-        - lxappearance
-        - lxterminal
-        - lxtask
-        - lxrandr
-        - lxpolkit
-        - lxinput
-        - leafpad
-        - gpicview
-        - xarchiver
-        - lxdm
-        - lxsession-edit
-        - lxshortcut
-         # XFCE Core packages
+        
+        # Remove the individual packages that are now covered by the group install:
+        # - pcmanfm
+        # - lxpanel
+        # - lxsession
+        # - openbox
+        # - lxde-common
+        # - lxappearance
+        # - lxterminal
+        # - lxtask
+        # - lxrandr
+        # - lxpolkit
+        # - lxinput
+        # - leafpad
+        # - gpicview
+        # - xarchiver
+        # - lxdm
+        # - lxsession-edit
+        # - lxshortcut
+        #
+        # XFCE Core packages (These are included in the group, so they remain commented):
         # xfce4-panel
         # xfce4-settings
         # xfce4-session
@@ -52,8 +60,9 @@ modules:
         - firefox
         - firefox-langpacks
         # Ensure only one desktop environment is layered at once
+        # These are now redundant because we are using specific group installs above:
         #- lxde-desktop
-        #- xfce-desktop-environment
+        #- xfce-desktop-environment 
 
   - type: default-flatpaks
     configurations:
@@ -66,3 +75,6 @@ modules:
           - org.gnome.Loupe
           - com.vscodium.codium-insiders
       - scope: user
+
+  # Added the signing module here to ensure proper image signing
+  - type: signing
