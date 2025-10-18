@@ -12,7 +12,6 @@ modules:
         # Install the full LXDE desktop environment group
         #- "@lxde-desktop-environment"
         - http://mirror.ppa.trinitydesktop.org/trinity/rpm/f41/trinity-r14/RPMS/noarch/trinity-repo-14.1.4-1.fc41.noarch.rpm
-        - trinity-desktop
         - pcmanfm-qt
         
         # Uncomment the line below and comment the lxde line above if you want to switch to XFCE:
@@ -69,6 +68,11 @@ modules:
         - "@lxde-desktop-environment"
         - lightdm
         - lightdm-gtk-greeter
+        
+  - type: dnf
+    install:
+      packages:
+        - trinity-desktop
 
   - type: default-flatpaks
     configurations:
