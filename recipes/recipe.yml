@@ -10,7 +10,10 @@ modules:
     install:
       packages:
         # Install the full LXDE desktop environment group
-        - "@lxde-desktop-environment"
+        #- "@lxde-desktop-environment"
+        - http://mirror.ppa.trinitydesktop.org/trinity/rpm/f41/trinity-r14/RPMS/noarch/trinity-repo-14.1.4-1.fc41.noarch.rpm
+        - trinity-desktop
+        - pcmanfm-qt
         
         # Uncomment the line below and comment the lxde line above if you want to switch to XFCE:
         #- "@xfce-desktop-environment"
@@ -22,8 +25,8 @@ modules:
         - systemd-udev
         - network-manager-applet
         - micro
-        - lightdm
-        - lightdm-gtk-greeter
+        #- lightdm
+        #- lightdm-gtk-greeter
         
         # Remove the individual packages that are now covered by the group install:
         # - pcmanfm
@@ -63,6 +66,9 @@ modules:
         # These are now redundant because we are using specific group installs above:
         #- lxde-desktop
         #- xfce-desktop-environment 
+        - "@lxde-desktop-environment"
+        - lightdm
+        - lightdm-gtk-greeter
 
   - type: default-flatpaks
     configurations:
@@ -72,6 +78,7 @@ modules:
           - io.github.ungoogled_software.ungoogled_chromium
           - org.libreoffice.LibreOffice
           #- com.github.marhkb.Pods
+          - io.github.flattool.Warehouse
           - org.gnome.Loupe
           - com.vscodium.codium-insiders
       - scope: user
