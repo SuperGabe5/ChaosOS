@@ -1,0 +1,91 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+name: chaosarm
+description: A custom image for ultimate Chaos
+
+base-image: ghcr.io/ublue-os/base-main
+image-version: 43
+
+modules:
+  - type: dnf
+    install:
+      packages:
+        # Install the full LXDE desktop environment group
+        #- "@lxde-desktop-environment"
+        - http://mirror.ppa.trinitydesktop.org/trinity/rpm/f43/trinity-r14/RPMS/noarch/trinity-repo-14.1.4-1.fc43.noarch.rpm
+        - pcmanfm-qt
+        
+        # Uncomment the line below and comment the lxde line above if you want to switch to XFCE:
+        #- "@xfce-desktop-environment"
+        
+        # Keep these necessary non-DE specific packages:
+        - xorg-x11-server-Xwayland
+        - plymouth
+        - plymouth-theme-spinner
+        - systemd-udev
+        - network-manager-applet
+        - micro
+        #- lightdm
+        #- lightdm-gtk-greeter
+        
+        # Remove the individual packages that are now covered by the group install:
+        # - pcmanfm
+        # - lxpanel
+        # - lxsession
+        # - openbox
+        # - lxde-common
+        # - lxappearance
+        # - lxterminal
+        # - lxtask
+        # - lxrandr
+        # - lxpolkit
+        # - lxinput
+        # - leafpad
+        # - gpicview
+        # - xarchiver
+        # - lxdm
+        # - lxsession-edit
+        # - lxshortcut
+        #
+        # XFCE Core packages (These are included in the group, so they remain commented):
+        # xfce4-panel
+        # xfce4-settings
+        # xfce4-session
+        # xfwm4
+        # thunar
+        # tumbler
+        # ristretto
+        # xfce4-terminal
+        # mousepad
+        # xarchiver
+    remove:
+      packages:
+        - firefox
+        - firefox-langpacks
+        # Ensure only one desktop environment is layered at once
+        # These are now redundant because we are using specific group installs above:
+        #- lxde-desktop
+        #- xfce-desktop-environment 
+        - "@lxde-desktop-environment"
+        - lightdm
+        - lightdm-gtk-greeter
+        
+  - type: dnf
+    install:
+      packages:
+        - trinity-desktop
+
+  - type: default-flatpaks
+    configurations:
+      - scope: system
+        install:
+          #- io.gitlab.librewolf-community
+          - io.github.ungoogled_software.ungoogled_chromium
+          - org.libreoffice.LibreOffice
+          #- com.github.marhkb.Pods
+          - io.github.flattool.Warehouse
+          - org.gnome.Loupe
+          - com.vscodium.codium-insiders
+      - scope: user
+
+  # Added the signing module here to ensure proper image signing
+  - type: signing
